@@ -1,0 +1,7 @@
+---
+# vars file for andock-ci-build
+
+skip_if_tag_matching: "{{branch}}*"
+
+
+git_tag: "{{branch}}--{{ansible_date_time.date}}--{{ansible_date_time.hour}}-{{ansible_date_time.minute}}"

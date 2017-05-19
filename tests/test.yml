@@ -1,0 +1,9 @@
+---
+- name: Tag both repositories
+  hosts: localhost
+  remote_user: cw
+  roles:
+    - role: andock-ci-tag
+      git_repository_path: git@github.com:andock-ci/drupal-8-demo-build.git
+      branch: "master-build"
+      build_dir: ~/ansible/tag
