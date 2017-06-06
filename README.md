@@ -60,7 +60,7 @@ Including an example of how to use your role (for instance, with variables passe
     - name: Tag repository
       hosts: localhost
       roles:
-        - role: tag
+        - role: andock-ci.tag
         git_repository_path: git@github.com:andock-ci/drupal-8-demo-build.git
         branch: "master-build"
         build_path: ~/ansible/tag
