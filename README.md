@@ -3,7 +3,7 @@ andock-ci.tag (Andock-ci tag role.)
 
 **andock-ci.tag** is a Ansible role which:
 * Checks out repository (e.g. from github)
-* Add tag (default: git_tag: "{{branch}}--{{ansible_date_time.date}}--{{ansible_date_time.hour}}-{{ansible_date_time.minute}}") 
+* Add a tag (default: git_tag: "{{branch}}--{{ansible_date_time.date}}--{{ansible_date_time.hour}}-{{ansible_date_time.minute}}") 
 * Push the tag  
   
 
