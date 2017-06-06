@@ -2,13 +2,13 @@
 - name: Create build_dir
   file:
     state: directory
-    path: "{{ build_dir }}"
+    path: "{{ build_path }}"
   tags: setup
 
 - name: git checkout
   git:
     repo: "{{ git_repository_path }}"
-    dest: "{{ build_dir }}"
+    dest: "{{ build_path }}"
     version: "{{ branch }}"
     accept_hostkey: true
     force: yes
@@ -18,10 +18,10 @@
   command: "git tag {{git_tag}}"
   args:
     warn: false
-    chdir: "{{build_dir}}"
+    chdir: "{{build_path}}"
 
 - name: Push tags
   command: "git push --tags"
   args:
     warn: false
-    chdir: "{{build_dir}}"
+    chdir: "{{build_path}}"
