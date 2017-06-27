@@ -1,27 +1,34 @@
 ---
-- name: Create build_dir
-  file:
-    state: directory
-    path: "{{ build_path }}"
-  tags: setup
+- block:
+  - name: Create build_dir
+    file:
+      state: directory
+      path: "{{ build_path }}"
+    tags: setup
 
-- name: git checkout
-  git:
-    repo: "{{ git_repository_path }}"
-    dest: "{{ build_path }}"
-    version: "{{ branch }}"
-    accept_hostkey: true
-    force: yes
-  tags: checkout
+  - name: git checkout
+    git:
+      repo: "{{ git_repository_path }}"
+      dest: "{{ build_path }}"
+      version: "{{ branch }}"
+      accept_hostkey: true
+      force: yes
+    tags: checkout
 
-- name: Create Git tag
-  command: "git tag {{git_tag}}"
-  args:
-    warn: false
-    chdir: "{{build_path}}"
+  - name: Create Git tag
+    command: "git tag {{git_tag}}"
+    args:
+      warn: false
+      chdir: "{{build_path}}"
 
-- name: Push tags
-  command: "git push --tags"
-  args:
-    warn: false
-    chdir: "{{build_path}}"
+  - name: Push tags
+    command: "git push --tags"
+    args:
+      warn: false
+      chdir: "{{build_path}}"
+
+  always:
+    - name: Clean up build directory
+      file:
+        state: absent
+        path: "{{ build_path }}"
